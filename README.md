@@ -1,2 +1,1 @@
-# qu
-my first git repository
+hello world
