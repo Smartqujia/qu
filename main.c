@@ -25,6 +25,7 @@ datalist_t *g_link = NULL;    /**< 保存用户数据的链表的头指针*/
 
 int main(int argc, char *argv[])
 {
+    int flag = 0, i = 0;
     int check_result = 0;
     int start_bit = 0;
     int stop_bit = 0;
@@ -43,6 +44,22 @@ int main(int argc, char *argv[])
 
         fgets(input_str, MAXLEN, stdin);
         input_str[strlen(input_str) - 1] = '\0';
+        
+        if(0 == strlen(input_str))
+            continue;
+        while('\0' == input_str[i++])
+        {
+            if(' ' == input_str[i])
+            {
+                continue;
+            }
+            else
+            {
+                flag = 1;
+            }
+        }
+        
+        if(1 == flag) continue;
         
         check_result = syntax_check(input_str, &start_bit, &stop_bit);
 
