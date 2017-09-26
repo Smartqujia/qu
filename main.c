@@ -1,16 +1,16 @@
 /**
  *    COPYRIGHT NOTICE
- *    Copyright (c) 2017, öÄ¼Ñ
+ *    Copyright (c) 2017, qu
  *    All rights reserved.
  *
  * @file main.c
  *
- * ±¾ÎÄ¼þÖ÷ÒªÊÇ´´½¨ÁËÒ»¸öÁ´±í£¬È»ºó¿ªÊ¼ÓÃ»§ÊäÈë¼°µ÷ÓÃÃüÁîÓÐÐ§ÐÔ¼ì²âÄ£
- * ¿é£¬×îÖÕ½«´¦Àí½á¹û½øÐÐÒ»ÏµÁÐºóÐø²Ù×÷£»
+ * æœ¬æ–‡ä»¶ä¸»è¦æ˜¯åˆ›å»ºäº†ä¸€ä¸ªé“¾è¡¨ï¼Œç„¶åŽå¼€å§‹ç”¨æˆ·è¾“å…¥åŠè°ƒç”¨å‘½ä»¤æœ‰æ•ˆæ€§æ£€æµ‹æ¨¡
+ * å—ï¼Œæœ€ç»ˆå°†å¤„ç†ç»“æžœè¿›è¡Œä¸€ç³»åˆ—åŽç»­æ“ä½œï¼›
  *
- *	°æ±¾	×÷Õß		ÈÕÆÚ			ÐÞ¶©ËµÃ÷
+ *	ç‰ˆæœ¬	ä½œè€…		æ—¥æœŸ			ä¿®è®¢è¯´æ˜Ž
  *
- *   1.00     öÄ¼Ñ		2017-7-27		×î³õ°æ±¾
+ *   1.00     qu		2017-7-27		æœ€åˆç‰ˆæœ¬
  *
  */
 
@@ -21,7 +21,7 @@
 #include "input_handle.h"
 
 
-datalist_t *g_link = NULL;    /**< ±£´æÓÃ»§Êý¾ÝµÄÁ´±íµÄÍ·Ö¸Õë*/
+datalist_t *g_link = NULL;    /**< ä¿å­˜ç”¨æˆ·æ•°æ®çš„é“¾è¡¨çš„å¤´æŒ‡é’ˆ*/
 
 int main(int argc, char *argv[])
 {
