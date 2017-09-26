@@ -1,6 +1,7 @@
 This project is just a practice for git and C program.
 
 Introduction:
+
     make :generate a executable binary file "main".
     
     ./main:
