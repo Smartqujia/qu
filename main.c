@@ -17,9 +17,13 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <signal.h>
 #include "data_list.h"
 #include "input_handle.h"
 
+typedef void (*sighandler_t)(int );
+
+void SIG_INT(int num){};
 
 datalist_t *g_link = NULL;    /**< 保存用户数据的链表的头指针*/
 
@@ -33,13 +37,19 @@ int main(int argc, char *argv[])
     
     g_link = create_link();
 
+    signal(SIGINT, SIG_INT);
+
     while(1)
     {
+        flag = 0;
+        i = 0;
         memset(input_str, 0, sizeof(input_str));  
-        /*printf("please enter you command:\n\
-                insert:a+data\n\
-                remove:d+data\n\
-                print:p \n");*/
+ /*
+ *printf("please enter you command:\n\
+ *              insert:a+data\n\
+ *              remove:d+data\n\
+ *              print:p \n");
+ */
         printf("ODSP CLI>");
 
         fgets(input_str, MAXLEN, stdin);
@@ -47,15 +57,19 @@ int main(int argc, char *argv[])
         
         if(0 == strlen(input_str))
             continue;
-        while('\0' == input_str[i++])
+        while('\0' != input_str[i])
         {
             if(' ' == input_str[i])
             {
+                flag = 1;
+                i++;
                 continue;
             }
             else
             {
-                flag = 1;
+                flag = 0;
+                i++;
+                break;
             }
         }
         
