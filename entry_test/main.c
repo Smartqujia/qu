@@ -1,16 +1,16 @@
 /**
  *    COPYRIGHT NOTICE
- *    Copyright (c) 2017, qu
+ *    Copyright (c) 2017, öÄ¼Ñ
  *    All rights reserved.
  *
  * @file main.c
  *
- * æœ¬æ–‡ä»¶ä¸»è¦æ˜¯åˆ›å»ºäº†ä¸€ä¸ªé“¾è¡¨ï¼Œç„¶åå¼€å§‹ç”¨æˆ·è¾“å…¥åŠè°ƒç”¨å‘½ä»¤æœ‰æ•ˆæ€§æ£€æµ‹æ¨¡
- * å—ï¼Œæœ€ç»ˆå°†å¤„ç†ç»“æœè¿›è¡Œä¸€ç³»åˆ—åç»­æ“ä½œï¼›
+ * ±¾ÎÄ¼şÖ÷ÒªÊÇ´´½¨ÁËÒ»¸öÁ´±í£¬È»ºó¿ªÊ¼ÓÃ»§ÊäÈë¼°µ÷ÓÃÃüÁîÓĞĞ§ĞÔ¼ì²âÄ£
+ * ¿é£¬×îÖÕ½«´¦Àí½á¹û½øĞĞÒ»ÏµÁĞºóĞø²Ù×÷£»
  *
- *	ç‰ˆæœ¬	ä½œè€…		æ—¥æœŸ			ä¿®è®¢è¯´æ˜
+ *	°æ±¾	×÷Õß		ÈÕÆÚ			ĞŞ¶©ËµÃ÷
  *
- *   1.00     qu		2017-7-27		æœ€åˆç‰ˆæœ¬
+ *   1.00     öÄ¼Ñ		2017-7-27		×î³õ°æ±¾
  *
  */
 
@@ -21,60 +21,72 @@
 #include "data_list.h"
 #include "input_handle.h"
 
-typedef void (*sighandler_t)(int );
+//typedef void (*sighandler_t)(int);
 
-void SIG_INT(int num){};
+void handle(int signum)
+{
+    printf("\n");
+    printf("(null)@(null)Qujia Cli# ");
+    fflush(stdout);
+    return;
+}
 
-datalist_t *g_link = NULL;    /**< ä¿å­˜ç”¨æˆ·æ•°æ®çš„é“¾è¡¨çš„å¤´æŒ‡é’ˆ*/
+void handle1(int signum)
+{
+    printf("hello world\n");
+    return;
+}
+
+
+datalist_t *g_link = NULL;    /**< ±£´æÓÃ»§Êı¾İµÄÁ´±íµÄÍ·Ö¸Õë*/
 
 int main(int argc, char *argv[])
 {
-    int flag = 0, i = 0;
     int check_result = 0;
     int start_bit = 0;
     int stop_bit = 0;
+    int blank_flag = 0;
     data input_str = {0};
-    
-    g_link = create_link();
+    int idx = 0;
 
-    signal(SIGINT, SIG_INT);
+    signal(SIGINT, handle);
+    signal(SIGKILL, handle1);
+    
+#ifdef QUJIA
+printf("hello world\n");
+sleep(10);
+#endif
+
+    g_link = create_link();
 
     while(1)
     {
-        flag = 0;
-        i = 0;
+        blank_flag = 0;
         memset(input_str, 0, sizeof(input_str));  
- /*
- *printf("please enter you command:\n\
- *              insert:a+data\n\
- *              remove:d+data\n\
- *              print:p \n");
- */
-        printf("ODSP CLI>");
+        printf("(null)@(null)Qujia Cli# ");
 
         fgets(input_str, MAXLEN, stdin);
         input_str[strlen(input_str) - 1] = '\0';
-        
-        if(0 == strlen(input_str))
-            continue;
-        while('\0' != input_str[i])
+
+        idx = 0;
+        while ('\0' != input_str[idx])
         {
-            if(' ' == input_str[i])
+            if (32 != input_str[idx] && 9 != input_str[idx])
             {
-                flag = 1;
-                i++;
-                continue;
-            }
-            else
-            {
-                flag = 0;
-                i++;
+                blank_flag = 1;
                 break;
             }
+            idx ++;
         }
-        
-        if(1 == flag) continue;
-        
+
+        if (0 == blank_flag)
+        {
+            continue;
+        }
+        if (0 == strcmp(input_str, "quit"))
+        {
+            exit(0);
+        }
         check_result = syntax_check(input_str, &start_bit, &stop_bit);
 
         if(TEST_PASSED == check_result)

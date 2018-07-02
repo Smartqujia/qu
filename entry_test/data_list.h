@@ -5,13 +5,13 @@
  *
  * @file 	data_list.h
  *
- * æœ¬æ–‡ä»¶ä¸»è¦å®šä¹‰å¯¹ä¿å­˜ç”¨æˆ·æ•°æ®çš„é“¾è¡¨çš„ç›¸å…³æ“ä½œæŽ¥å£ï¼ŒåŒ…å«ä¸‹é¢å‡ ä¸ªéƒ¨åˆ†çš„å†…å®¹:
- * 			1. å¯¹ç”¨æˆ·è¾“å…¥ä»¥åŠå¯¹å…¨å±€é“¾è¡¨è¿›è¡Œæ“ä½œçš„ç›¸å…³æŽ¥å£ï¼›
- * 			2. ç”¨æ¥ä¿å­˜ç”¨æˆ·è¾“å…¥çš„æ•°æ®ç»“æž„ï¼›
+ * ±¾ÎÄ¼þÖ÷Òª¶¨Òå¶Ô±£´æÓÃ»§Êý¾ÝµÄÁ´±íµÄÏà¹Ø²Ù×÷½Ó¿Ú£¬°üº¬ÏÂÃæ¼¸¸ö²¿·ÖµÄÄÚÈÝ:
+ * 			1. ¶ÔÓÃ»§ÊäÈëÒÔ¼°¶ÔÈ«¾ÖÁ´±í½øÐÐ²Ù×÷µÄÏà¹Ø½Ó¿Ú£»
+ * 			2. ÓÃÀ´±£´æÓÃ»§ÊäÈëµÄÊý¾Ý½á¹¹£»
  *	
- *	ç‰ˆæœ¬	ä½œè€…		æ—¥æœŸ			ä¿®è®¢è¯´æ˜Ž
+ *	°æ±¾	×÷Õß		ÈÕÆÚ			ÐÞ¶©ËµÃ÷
  *
- *   1.00     qu		2017-07-28		æœ€åˆç‰ˆæœ¬
+ *   1.00     öÄ¼Ñ		2017-07-28		×î³õ°æ±¾
  */
 #ifndef _DATA_LIST_H
 #define _DATA_LIST_H
@@ -21,11 +21,11 @@
 #include <stdlib.h>
 #include "pub.h"
                                                      
-/**æè¿°ä¿å­˜ç”¨æˆ·çš„è¾“å…¥çš„ç»“æž„ä½“;
+/**ÃèÊö±£´æÓÃ»§µÄÊäÈëµÄ½á¹¹Ìå;
 */
 typedef struct node{
-    struct node *next;        /**<ä¸‹ä¸€ä¸ªèŠ‚ç‚¹çš„åœ°å€*/
-    data figure;              /**< è¾“å…¥çš„æœ‰æ•ˆæ•°æ®*/
+    struct node *next;        /**<ÏÂÒ»¸ö½ÚµãµÄµØÖ·*/
+    data figure;              /**< ÊäÈëµÄÓÐÐ§Êý¾Ý*/
 }datalist_t;
 
 extern void insert_link(datalist_t *, data );
