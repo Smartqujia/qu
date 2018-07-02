@@ -410,7 +410,7 @@ void valid_data_copy(char *input_str, int start_bit, int stop_bit)
     return;
 }
 
-
+#if 0
 /**用户数据大小的比较
 *
 *该函数通过将用户输入的有效数据进行逐位比
@@ -600,4 +600,4 @@ int data_compare(data p, data q)
     }
     return 0;   
 }
-
+#endif
