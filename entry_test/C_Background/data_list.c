@@ -72,7 +72,9 @@ void delete_link(datalist_t *validData, data inserted)
 {
         datalist_t *tmp = validData;
         datalist_t *delNode = NULL;
-        int equal_flag = 0;
+        int equal_flag = ~(-1);
+        int exist_flag = 0;
+
 
         while(tmp->next != NULL)
         {
@@ -84,12 +86,13 @@ void delete_link(datalist_t *validData, data inserted)
                         tmp->next = delNode->next;
                         free(delNode);
                         delNode = NULL;
+                        exist_flag = 1;
                         break;
                 }
                 tmp = tmp->next;
         }
 
-        if(0 != equal_flag)
+        if( 0 == exist_flag )
         {
                 printf("the data do not exist!\n");
         }
