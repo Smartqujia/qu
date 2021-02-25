@@ -1,68 +1,92 @@
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <time.h>
 
 int quick_sort(int *array, int size)
 {
-    int left = 0;
-    int right = 0;
-    int guard = 0;
-    
-    if(NULL == array || 0 == size)
-    {
-        return -1;
-    }
+        int left = 0;
+        int right = 0;
+        int guard = 0;
 
-    right = size - 1;
-    guard = array[0];
+        if(NULL == array || 0 == size)
+        {
+                return -1;
+        }
 
-    if(size > 1)
-    {
-            while(left < right)
-            {
-                    while(array[right] >= guard 
-                                    && left < right)
-                    {
-                            right --;
-                    }
+        right = size - 1;
+        guard = array[0];
 
-                    array[left] = array[right];
+        if(size > 1)
+        {
+                while(left < right)
+                {
+                        while(array[right] >= guard 
+                                        && left < right)
+                        {
+                                right --;
+                        }
 
-                    while(array[left] <= guard 
-                                    && left < right)
-                    {
-                            left ++;
-                    }
+                        array[left] = array[right];
 
-                    array[right] = array[left];
-            }
+                        while(array[left] <= guard 
+                                        && left < right)
+                        {
+                                left ++;
+                        }
 
-            array[left] = guard;
+                        array[right] = array[left];
+                }
 
-            quick_sort(array, left);
-            quick_sort(array  + right + 1, size - right - 1);
-    }
+                array[left] = guard;
 
-    return 0;
+                quick_sort(array, left);
+                quick_sort(array  + right + 1, size - right - 1);
+        }
+
+        return 0;
 }
 
 int main()
 {
-    int i = 0;
-    int ret = 0;
-    int array[10] = {1, 20, 33, 2, 4, 3, 10, 1, 5, 5};
-    
-    ret = quick_sort(array, sizeof(array) / sizeof(array[0]));
-    if(0 != ret)
-    {
-        printf("Error, %d\n", ret);
-        return -1;
-    }
+        int i = 0;
+        int j = 0;
+        int ret = 0;
+        int array[10];
 
-    for(i = 0; i < 10; i ++)
-    {
-        printf("%d, ", array[i]);
-    }
 
-    putchar('\n');
+        srand(time(NULL));
+        for (j = 0; j < 10000000; j ++)
+        {
+                memset(array, 0x00, sizeof(array));
 
-    return 0;
+                for(i = 0; i < sizeof(array) / sizeof(array[0]); i ++)
+                {
+                        //srand(time(NULL));
+                        array[i] = rand() % 100;
+                }
+
+                ret = quick_sort(array, sizeof(array) / sizeof(array[0]));
+                if(0 != ret)
+                {
+                        printf("Error, %d\n", ret);
+                        return -1;
+                }
+
+                for(i = 0; i < sizeof(array) / sizeof(array[0]) - 1; i ++)
+                {
+                        if(array[i] > array[i + 1])
+                        {
+                                printf("FALSE\n");
+                                printf("%d, ", array[i]);
+                                
+                                return -1;
+                        }
+                }
+
+        }
+
+        printf("True\n");
+
+        return 0;
 }
